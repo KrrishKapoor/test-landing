@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-
 type Stat = { l: string; v: string };
 
 type Project = {
@@ -17,7 +15,7 @@ const projects: Project[] = [
     year: '2025',
     title: 'Underwriting copilot for a Toronto lender',
     desc:
-      'A supervised multi-agent assistant that pulls bureau data, runs scenario analysis, and drafts memos with citations — slotted into an existing credit workflow.',
+      'A supervised multi-agent assistant that pulls bureau data, runs scenario analysis, and drafts memos with citations — slotted into an existing credit workflow without re-platforming.',
     stats: [
       { l: 'Time saved', v: '4.2h/file' },
       { l: 'Cite accuracy', v: '98%' },
@@ -30,7 +28,7 @@ const projects: Project[] = [
     year: '2024',
     title: 'Event-driven warehouse rebuild',
     desc:
-      'Replaced a brittle nightly ETL with an event-driven Kafka → dbt → Snowflake pipeline. Lineage, tests, and SLAs baked in from day one.',
+      'Replaced a brittle nightly ETL with a Kafka → dbt → Snowflake pipeline. Lineage, tests, and SLAs baked in from day one — analysts trusted the numbers again.',
     stats: [
       { l: 'Freshness', v: '60s' },
       { l: 'Cost', v: '−47%' },
@@ -43,7 +41,7 @@ const projects: Project[] = [
     year: '2025',
     title: 'Retrieval evals as a first-class service',
     desc:
-      'Built an eval harness that scores retrieval, grounding, and answer quality on every PR. Regressions caught before they ship, not after.',
+      'Built an eval harness that scores retrieval, grounding, and answer quality on every PR. Regressions get caught before they ship, not after a user reports them.',
     stats: [
       { l: 'Eval runs', v: '12k+' },
       { l: 'p95', v: '1.4s' },
@@ -105,7 +103,7 @@ function FlowViz() {
     <div className="viz-flow" aria-hidden="true">
       <svg viewBox="0 0 240 140">
         <g
-          stroke="rgba(255,255,255,0.18)"
+          stroke="rgba(255,255,255,0.16)"
           strokeDasharray="3 4"
           strokeWidth="1"
           fill="none"
@@ -167,17 +165,10 @@ export function Projects() {
 
         <div className="projects-grid">
           {projects.map((p, i) => (
-            <motion.article
+            <article
               key={p.title}
               className="project-card"
-              initial={{ y: 18 }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{
-                duration: 0.55,
-                delay: i * 0.08,
-                ease: [0.2, 0.8, 0.2, 1] as const,
-              }}
+              style={{ animationDelay: `${i * 70}ms` }}
             >
               <div className="project-card-top">
                 <span className="badge">{p.badge}</span>
@@ -194,7 +185,7 @@ export function Projects() {
                   </div>
                 ))}
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

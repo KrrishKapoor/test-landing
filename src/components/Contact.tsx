@@ -4,12 +4,16 @@ import { GithubIcon, LinkedinIcon } from './BrandIcons';
 
 export function Contact() {
   return (
-    <section className="section section--tight" id="contact" aria-labelledby="contact-title">
+    <section
+      className="section section--tight"
+      id="contact"
+      aria-labelledby="contact-title"
+    >
       <div className="shell">
         <motion.div
           className="cta"
-          initial={{ y: 18 }}
-          whileInView={{ y: 0 }}
+          initial={{ y: 18, opacity: 0.001 }}
+          whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] as const }}
         >
@@ -25,10 +29,13 @@ export function Contact() {
             <p>
               I’m most useful where data, models, and product meet — when
               there’s a real outcome on the line and someone needs to wire it
-              all together. Let’s talk about what you’re building.
+              all together. Tell me what you’re building.
             </p>
             <div className="cta-actions">
-              <a className="btn btn--primary" href="mailto:krrishkapoor003@gmail.com">
+              <a
+                className="btn btn--primary"
+                href="mailto:krrishkapoor003@gmail.com"
+              >
                 <Mail size={16} strokeWidth={2.2} aria-hidden="true" />
                 Start a conversation
               </a>
@@ -52,7 +59,11 @@ export function Contact() {
                 <GithubIcon size={14} />
                 github
               </a>
-              <a href="https://linkedin.com/" target="_blank" rel="noreferrer">
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <LinkedinIcon size={14} />
                 linkedin
               </a>

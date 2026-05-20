@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import {
   BarChart3,
   Database,
@@ -9,6 +8,7 @@ import {
 import { useRef } from 'react';
 
 type Role = {
+  num: string;
   icon: LucideIcon;
   title: string;
   desc: string;
@@ -17,36 +17,40 @@ type Role = {
 
 const roles: Role[] = [
   {
+    num: 'R.01',
     icon: BarChart3,
     title: 'Data Analyst',
     desc:
-      'Turn messy operational data into decisions. SQL-first, dashboards that drive action, experimentation that holds up.',
+      'Turn messy operational data into decisions. SQL-first, dashboards that drive action, experimentation that holds up to a second look.',
     tags: ['SQL', 'dbt', 'Looker', 'A/B testing', 'Cohorts'],
   },
   {
+    num: 'R.02',
     icon: Database,
     title: 'Data Engineer',
     desc:
-      'Reliable ingestion, transformation, and warehouse modelling. Production-grade pipelines with tests, lineage, and SLAs.',
+      'Reliable ingestion, transformation, and warehouse modelling. Production pipelines with tests, lineage, and SLAs you can call at 2am.',
     tags: ['Airflow', 'Snowflake', 'BigQuery', 'Kafka', 'Spark'],
   },
   {
+    num: 'R.03',
     icon: Sparkles,
     title: 'AI Engineer',
     desc:
-      'Ship LLM features that survive contact with users. Retrieval, evals, guardrails, and the unglamorous infra that keeps it cheap.',
+      'LLM features that survive real users. Retrieval, evals, guardrails, and the unglamorous infrastructure that keeps unit economics sane.',
     tags: ['Python', 'PyTorch', 'RAG', 'Evals', 'Vector DBs'],
   },
   {
+    num: 'R.04',
     icon: Network,
     title: 'Agents Architect',
     desc:
-      'Design multi-agent systems with tool-use, memory, and supervisors. Robust routing, deterministic where it matters, traceable end-to-end.',
+      'Multi-agent systems with tool-use, memory, and supervisors. Deterministic where it matters, traceable end-to-end, recoverable when it isn’t.',
     tags: ['LangGraph', 'MCP', 'Tool-use', 'Supervisors', 'Tracing'],
   },
 ];
 
-function RoleCard({ role, i }: { role: Role; i: number }) {
+function RoleCard({ role }: { role: Role }) {
   const ref = useRef<HTMLDivElement>(null);
   const Icon = role.icon;
   const onMove = (e: React.MouseEvent) => {
@@ -60,15 +64,8 @@ function RoleCard({ role, i }: { role: Role; i: number }) {
   };
 
   return (
-    <motion.div
-      ref={ref}
-      className="role-card"
-      onMouseMove={onMove}
-      initial={{ y: 16 }}
-      whileInView={{ y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5, delay: i * 0.06, ease: [0.2, 0.8, 0.2, 1] as const }}
-    >
+    <div ref={ref} className="role-card" onMouseMove={onMove}>
+      <div className="role-card-num">{role.num}</div>
       <div className="role-icon" aria-hidden="true">
         <Icon size={20} strokeWidth={1.8} />
       </div>
@@ -81,7 +78,7 @@ function RoleCard({ role, i }: { role: Role; i: number }) {
           </span>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -95,12 +92,12 @@ export function Roles() {
           <p>
             From the first SQL query to the last agent trace — I cover the whole
             chain between data, models, and the systems that use them. The
-            craft is in moving fluidly between layers.
+            craft is moving fluidly between layers, not specializing into one.
           </p>
         </div>
         <div className="roles-grid">
-          {roles.map((r, i) => (
-            <RoleCard role={r} i={i} key={r.title} />
+          {roles.map((r) => (
+            <RoleCard role={r} key={r.title} />
           ))}
         </div>
       </div>

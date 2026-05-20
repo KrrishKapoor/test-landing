@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-
 const steps = [
   {
     num: '01',
@@ -20,14 +18,14 @@ const steps = [
     tag: 'Build',
     title: 'Ship in vertical slices.',
     desc:
-      'A skeleton that runs end-to-end on day one, then layered improvements with evals and observability built in from the first commit.',
+      'A skeleton that runs end-to-end on day one, then layered improvements — with evals, traces, and dashboards landing in the same PR as the feature.',
   },
   {
     num: '04',
     tag: 'Operate',
     title: 'Hand off something other engineers can run.',
     desc:
-      'Tracing, runbooks, dashboards, and tests that catch regressions before users do. The system outlives the engagement.',
+      'Runbooks, tracing, dashboards, and tests that catch regressions before users do. The system has to outlive the engagement.',
   },
 ];
 
@@ -39,24 +37,17 @@ export function Process() {
           <span className="eyebrow">05 — Process</span>
           <h2 id="process-title">How an engagement runs.</h2>
           <p>
-            A repeatable shape, but never a templated playbook — every system
-            has its own pressure points and the work is to find them quickly.
+            A repeatable shape, never a templated playbook — every system has
+            its own pressure points and the work is to find them quickly.
           </p>
         </div>
 
         <ol className="timeline" aria-label="Process steps">
           {steps.map((s, i) => (
-            <motion.li
+            <li
               key={s.num}
               className="timeline-item"
-              initial={{ x: -12 }}
-              whileInView={{ x: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{
-                duration: 0.5,
-                delay: i * 0.07,
-                ease: [0.2, 0.8, 0.2, 1] as const,
-              }}
+              style={{ animationDelay: `${i * 70}ms` }}
             >
               <span className="ti-num">{s.num}</span>
               <div>
@@ -64,7 +55,7 @@ export function Process() {
                 <p>{s.desc}</p>
               </div>
               <span className="ti-tag">{s.tag}</span>
-            </motion.li>
+            </li>
           ))}
         </ol>
       </div>

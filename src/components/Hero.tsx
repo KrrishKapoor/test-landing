@@ -7,9 +7,22 @@ const fadeUp = {
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.2, 0.8, 0.2, 1] as const, delay: i * 0.06 },
+    transition: {
+      duration: 0.55,
+      ease: [0.2, 0.8, 0.2, 1] as const,
+      delay: i * 0.06,
+    },
   }),
 };
+
+const trustmarks = [
+  'Fintech',
+  'Operations',
+  'Public sector',
+  'AI platform',
+  'Retail data',
+  'Healthcare',
+];
 
 export function Hero() {
   return (
@@ -18,24 +31,14 @@ export function Hero() {
       <div className="shell">
         <div className="hero-layout">
           <div>
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={0}
-            >
+            <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0}>
               <span className="status-pill">
                 <span className="status-dot" aria-hidden="true" />
-                Building agent systems · Toronto / Remote
+                Available · Toronto / remote · May 2026
               </span>
             </motion.div>
 
-            <motion.h1
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={1}
-            >
+            <motion.h1 variants={fadeUp} initial="hidden" animate="show" custom={1}>
               Data, AI, and{' '}
               <span className="accent">agent architectures</span>
               <br />
@@ -49,10 +52,10 @@ export function Hero() {
               animate="show"
               custom={2}
             >
-              I design and build the systems behind modern AI products —
-              from analytics pipelines and ML infrastructure to multi-agent
-              orchestration. Pragmatic engineering, measurable outcomes, and a
-              bias for shipping.
+              I&rsquo;m Krrish &mdash; a data and AI engineer in Toronto. I build the
+              boring, durable systems behind modern AI products: warehouse
+              pipelines, retrieval and evals, and multi-agent orchestration that
+              survives users.
             </motion.p>
 
             <motion.div
@@ -105,16 +108,16 @@ export function Hero() {
             className="hero-card"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25, ease: [0.2, 0.8, 0.2, 1] as const }}
+            transition={{
+              duration: 0.7,
+              delay: 0.25,
+              ease: [0.2, 0.8, 0.2, 1] as const,
+            }}
             aria-label="Live system snapshot"
           >
             <div className="hero-card-head">
               <h3>system.snapshot</h3>
-              <div className="dot-row" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </div>
+              <span className="tag">prod</span>
             </div>
 
             <div className="hero-card-body">
@@ -123,7 +126,7 @@ export function Hero() {
               </div>
               <div>
                 <span className="k">orchestrator</span>={' '}
-                <span className="v">"langgraph-router-v3"</span>
+                <span className="v">"langgraph-supervisor-v3"</span>
               </div>
               <div>
                 <span className="k">tools</span>={' '}
@@ -139,6 +142,11 @@ export function Hero() {
                 <span className="v">cloudflare-workers</span>{' '}
                 <span className="c">// edge</span>
               </div>
+              <div>
+                <span className="k">trace</span>={' '}
+                <span className="l">otel</span>{' '}
+                <span className="c">// langsmith + grafana</span>
+              </div>
             </div>
 
             <div className="metric-row">
@@ -148,7 +156,7 @@ export function Hero() {
                 <div className="delta">↓ 38%</div>
               </div>
               <div className="metric">
-                <div className="label">accuracy</div>
+                <div className="label">grounded</div>
                 <div className="value">92.7%</div>
                 <div className="delta">↑ 4.1</div>
               </div>
@@ -159,6 +167,15 @@ export function Hero() {
               </div>
             </div>
           </motion.aside>
+        </div>
+
+        <div className="trustmarks" aria-label="Industries shipped in">
+          <span className="tm-label">Shipped in</span>
+          <ul>
+            {trustmarks.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </header>

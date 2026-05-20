@@ -11,11 +11,11 @@ export function Nav() {
           <span>Krrish Kapoor</span>
         </a>
         <div className="nav-links" role="list">
-          <a href="#roles">Roles</a>
-          <a href="#architecture">Architecture</a>
-          <a href="#work">Work</a>
-          <a href="#stack">Stack</a>
-          <a href="#process">Process</a>
+          <a href="#roles">01 · Roles</a>
+          <a href="#architecture">02 · Systems</a>
+          <a href="#work">03 · Work</a>
+          <a href="#stack">04 · Stack</a>
+          <a href="#process">05 · Process</a>
         </div>
         <a className="nav-cta" href="#contact">
           Get in touch

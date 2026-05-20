@@ -1,18 +1,20 @@
-import { motion } from 'framer-motion';
-
-type Cat = { name: string; items: string[] };
+type Tone = 'cyan' | 'signal' | 'lavender';
+type Cat = { name: string; tone: Tone; items: string[] };
 
 const cats: Cat[] = [
   {
     name: 'Languages',
+    tone: 'cyan',
     items: ['Python', 'TypeScript', 'SQL', 'Go', 'Bash'],
   },
   {
     name: 'Data',
+    tone: 'signal',
     items: ['dbt', 'Airflow', 'Kafka', 'Snowflake', 'BigQuery', 'DuckDB', 'Spark'],
   },
   {
     name: 'AI / Agents',
+    tone: 'lavender',
     items: [
       'LangGraph',
       'LangChain',
@@ -26,6 +28,7 @@ const cats: Cat[] = [
   },
   {
     name: 'Platform',
+    tone: 'cyan',
     items: [
       'AWS',
       'GCP',
@@ -47,24 +50,18 @@ export function Stack() {
           <h2 id="stack-title">The toolchain behind the work.</h2>
           <p>
             Tools are the means, not the brand. The list changes — the
-            discipline doesn’t: small, well-tested pieces composed into
-            systems that don’t surprise you at 2am.
+            discipline doesn’t: small, well-tested pieces composed into systems
+            that don’t surprise you at 2am.
           </p>
         </div>
 
         <div className="stack-categories">
           {cats.map((c, i) => (
-            <motion.div
+            <div
               className="stack-cat"
+              data-tone={c.tone === 'cyan' ? undefined : c.tone}
               key={c.name}
-              initial={{ y: 14 }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{
-                duration: 0.45,
-                delay: i * 0.05,
-                ease: [0.2, 0.8, 0.2, 1] as const,
-              }}
+              style={{ animationDelay: `${i * 60}ms` }}
             >
               <div className="stack-cat-title">{c.name}</div>
               <div className="stack-chips">
@@ -74,7 +71,7 @@ export function Stack() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
