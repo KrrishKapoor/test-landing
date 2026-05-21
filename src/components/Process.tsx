@@ -42,19 +42,17 @@ export function Process() {
           </p>
         </div>
 
-        <ol className="timeline" aria-label="Process steps">
+        <ol className="steps" aria-label="Process steps">
           {steps.map((s, i) => (
             <li
               key={s.num}
-              className="timeline-item"
+              className="step"
               style={{ animationDelay: `${i * 70}ms` }}
             >
-              <span className="ti-num">{s.num}</span>
-              <div>
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
-              </div>
-              <span className="ti-tag">{s.tag}</span>
+              <span className="step-num">{s.num}</span>
+              <span className="step-tag">{s.tag}</span>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
             </li>
           ))}
         </ol>

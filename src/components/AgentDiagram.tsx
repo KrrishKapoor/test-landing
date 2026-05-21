@@ -51,88 +51,77 @@ const paths = [
 ];
 
 const bands = [
-  {
-    label: 'Inputs',
-    desc: 'User intent enters as natural language, API call, or an event. Schema-validated before it routes.',
-  },
-  {
-    label: 'Supervisor',
-    desc: 'Plans, routes, and re-tries. Owns the policy: which tool, which agent, when to escalate.',
-  },
-  {
-    label: 'Tools & Agents',
-    desc: 'A typed tool layer feeds specialist agents — analyst, engineer, operator — with bounded authority.',
-  },
-  {
-    label: 'Output',
-    desc: 'Cited, traced, evaluated. Every step inspectable via OpenTelemetry + nightly evals.',
-  },
+  { label: 'Inputs', desc: 'NL · API · event, schema-validated before it routes.' },
+  { label: 'Supervisor', desc: 'Plans, routes, retries. Owns the policy and budget.' },
+  { label: 'Tools', desc: 'Typed contracts — SQL, retrieval, web, code.' },
+  { label: 'Agents', desc: 'Specialists with bounded authority and memory scopes.' },
+  { label: 'Output', desc: 'Cited, traced, evaluated. Every step inspectable.' },
 ];
 
 export function AgentDiagram() {
   return (
     <section
-      className="section"
+      className="section section--flush"
       id="architecture"
       aria-labelledby="arch-title"
     >
-      <div className="shell">
-        <div className="section-head">
-          <span className="eyebrow">02 — Systems</span>
-          <h2 id="arch-title">Agent architectures, built for production.</h2>
-          <p>
-            A reference of how I think about multi-agent systems: a planning
-            supervisor, a typed tool layer, specialist agents with bounded
-            authority, and an observability spine that makes every step
-            inspectable.
-          </p>
+      <div className="arch">
+        <div className="arch-grid" aria-hidden="true" />
+
+        <div className="sec-meta">
+          <span className="num">02</span>
+          <span>Architecture canvas</span>
+          <span className="tag">/ reference shape · runtime path reads left → right</span>
         </div>
 
-        <div className="arch-key" aria-label="Architecture bands">
+        <h2 id="arch-title" className="sec-title">
+          A supervisor, a typed tool layer, agents with{' '}
+          <em>bounded authority</em>, and an observability spine.
+        </h2>
+        <p className="sec-lede">
+          The reference of how I think about multi-agent systems. Every node
+          earns its place — the moving parts stay small, the boundaries stay
+          explicit.
+        </p>
+
+        <div className="arch-bands" aria-label="Architecture bands" style={{ marginTop: 28 }}>
           {bands.map((b) => (
-            <div className="arch-key-cell" key={b.label}>
-              <div className="ak-label">{b.label}</div>
-              <div className="ak-body">{b.desc}</div>
+            <div className="arch-band" key={b.label}>
+              <div className="lbl">{b.label}</div>
+              <div className="body">{b.desc}</div>
             </div>
           ))}
         </div>
 
-        <div className="diagram-wrap">
-          <div className="diagram-grid" aria-hidden="true" />
-
+        <div className="arch-canvas">
           <motion.svg
             className="diagram-svg"
             viewBox="0 0 1080 480"
             role="img"
-            aria-label="Agent architecture: user intent enters a supervisor, which routes to typed tools (SQL, retrieval, web, code), which feed specialist agents (analyst, engineering, ops), which return to a traced, evaluated, cited output."
+            aria-label="Agent architecture: user intent enters a supervisor, which routes to typed tools (SQL, retrieval, web, code), feeding specialist agents (analyst, engineering, ops), returning to a traced, evaluated, cited output."
             initial="show"
             animate="show"
           >
             <defs>
-              <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="rgba(34,211,238,0.18)" />
-                <stop offset="100%" stopColor="rgba(34,211,238,0)" />
-              </radialGradient>
               <linearGradient id="supGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="rgba(34,211,238,0.18)" />
-                <stop offset="100%" stopColor="rgba(196,181,253,0.12)" />
+                <stop offset="0%" stopColor="rgba(251,146,60,0.18)" />
+                <stop offset="100%" stopColor="rgba(34,211,238,0.12)" />
               </linearGradient>
             </defs>
 
-            {/* band labels */}
-            <text className="diagram-band" x="105" y="40" textAnchor="middle">
+            <text className="diagram-band" x="105" y="36" textAnchor="middle">
               Inputs
             </text>
-            <text className="diagram-band" x="325" y="40" textAnchor="middle">
+            <text className="diagram-band" x="325" y="36" textAnchor="middle">
               Supervisor
             </text>
-            <text className="diagram-band" x="545" y="40" textAnchor="middle">
+            <text className="diagram-band" x="545" y="36" textAnchor="middle">
               Tools
             </text>
-            <text className="diagram-band" x="760" y="40" textAnchor="middle">
+            <text className="diagram-band" x="760" y="36" textAnchor="middle">
               Agents
             </text>
-            <text className="diagram-band" x="975" y="40" textAnchor="middle">
+            <text className="diagram-band" x="975" y="36" textAnchor="middle">
               Output
             </text>
 
@@ -185,7 +174,7 @@ export function AgentDiagram() {
             })}
           </motion.svg>
 
-          <div className="diagram-legend" aria-hidden="true">
+          <div className="arch-legend" aria-hidden="true">
             <span>
               <i style={{ background: '#22d3ee' }} /> Data flow
             </span>
@@ -193,7 +182,7 @@ export function AgentDiagram() {
               <i
                 style={{
                   background: 'transparent',
-                  border: '1px solid rgba(34,211,238,0.55)',
+                  border: '1px solid rgba(251,146,60,0.55)',
                 }}
               />{' '}
               Supervisor
@@ -204,10 +193,9 @@ export function AgentDiagram() {
           </div>
         </div>
 
-        <p className="diagram-caption">
-          Left → right reads like the runtime path. Each tool has a typed
-          contract; each agent has a bounded scope. The supervisor is the only
-          stateful planner — every other node is replaceable.
+        <p className="arch-caption">
+          The supervisor is the only stateful planner — every other node is a
+          typed, replaceable contract.
         </p>
       </div>
     </section>

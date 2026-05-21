@@ -1,4 +1,5 @@
 import { Nav } from './components/Nav';
+import { TopBar } from './components/TopBar';
 import { Hero } from './components/Hero';
 import { Roles } from './components/Roles';
 import { AgentDiagram } from './components/AgentDiagram';
@@ -13,16 +14,21 @@ function App() {
       <a className="skip-link" href="#main">
         Skip to main content
       </a>
-      <Nav />
-      <main id="main">
-        <Hero />
-        <Roles />
-        <AgentDiagram />
-        <Projects />
-        <Stack />
-        <Process />
-        <Contact />
-      </main>
+      <TopBar />
+      <div className="shell-grid">
+        <Nav />
+        <main id="main" className="content">
+          <div className="content-inner">
+            <Hero />
+            <Roles />
+            <AgentDiagram />
+            <Projects />
+            <Stack />
+            <Process />
+            <Contact />
+          </div>
+        </main>
+      </div>
     </>
   );
 }

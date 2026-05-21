@@ -55,22 +55,23 @@ export function Stack() {
           </p>
         </div>
 
-        <div className="stack-categories">
+        <div className="toolchain">
           {cats.map((c, i) => (
             <div
-              className="stack-cat"
+              className="toolchain-row"
               data-tone={c.tone === 'cyan' ? undefined : c.tone}
               key={c.name}
               style={{ animationDelay: `${i * 60}ms` }}
             >
-              <div className="stack-cat-title">{c.name}</div>
-              <div className="stack-chips">
+              <div className="cat">{c.name}</div>
+              <div className="toolchain-chips">
                 {c.items.map((t) => (
-                  <span className="stack-chip" key={t}>
+                  <span className="tc-chip" key={t}>
                     {t}
                   </span>
                 ))}
               </div>
+              <div className="count">{String(c.items.length).padStart(2, '0')} tools</div>
             </div>
           ))}
         </div>
